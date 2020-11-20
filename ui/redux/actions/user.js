@@ -91,7 +91,17 @@ export function doInstallNewWithParams(
 function checkAuthBusy() {
   return new Promise(function(resolve, reject) {
     (function waitForAuth() {
-      if (!IS_WEB) {
+      let sessAvail = false;
+      try {
+        sessionStorage.setItem('test', 'available');
+        sessionStorage.removeItem('test');
+        sessAvail = true;
+      } catch (e) {
+        if (e) {
+          console.log('no session storage', e);
+        }
+      }
+      if (!IS_WEB || !sessAvail) {
         return resolve();
       }
       const inProgress = window.sessionStorage.getItem(AUTH_IN_PROGRESS);
@@ -124,7 +134,7 @@ export function doAuthenticate(
         return Lbryio.authenticate(DOMAIN, window.navigator.language.slice(0, 2) || 'en');
       })
       .then(user => {
-        window.sessionStorage.removeItem(AUTH_IN_PROGRESS);
+        if (window.sessionStorage) window.sessionStorage.removeItem(AUTH_IN_PROGRESS);
         Lbryio.getAuthToken().then(token => {
           dispatch({
             type: ACTIONS.AUTHENTICATION_SUCCESS,
