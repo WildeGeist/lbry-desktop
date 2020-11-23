@@ -172,6 +172,7 @@ function ClaimListDiscover(props: Props) {
     if (historyAction !== 'POP') {
       setOrderParamEntry(orderParam);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [historyAction, setOrderParamEntry]);
 
   let options: {

@@ -122,6 +122,7 @@ function ClaimListHeader(props: Props) {
     if (action !== 'POP') {
       setOrderParamEntry(orderParam);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleChange(change) {
