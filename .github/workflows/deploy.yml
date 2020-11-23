@@ -14,6 +14,7 @@ jobs:
     name: 'lint'
     runs-on: 'ubuntu-latest'
     steps:
+      - uses: Borales/actions-yarn@v2.3.0
       - run: yarn lint
 
   build:
@@ -29,6 +30,5 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: Borales/actions-yarn@v2.3.0
       - run: |
           NODE_ENV=production yarn compile:web
