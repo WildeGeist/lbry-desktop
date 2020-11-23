@@ -15,7 +15,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: Borales/actions-yarn@v2.3.0
-      - run: ls
+      - run: ls /home/runner/work/lbry-desktop/lbry-desktop
       - run: yarn lint
 
   build:
