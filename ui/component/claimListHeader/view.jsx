@@ -115,7 +115,7 @@ function ClaimListHeader(props: Props) {
 
   React.useEffect(() => {
     setOrderParamUser(orderParam);
-  }, [orderParam]);
+  }, [orderParam, setOrderParamUser]);
 
   React.useEffect(() => {
     // One-time update to stash the finalized 'orderParam' at entry.
